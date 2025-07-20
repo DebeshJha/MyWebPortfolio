@@ -1,6 +1,6 @@
 {
   "name": "MyPortFolio",
-  "homepage": "https://github.com/Swarna7414/MyWebPortfolio/",
+  "homepage": "https://github.com/DebeshJha/MyWebPortfolio/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -37,7 +37,7 @@
     "@iconify/react": "^5.2.1",
     "@types/dat.gui": "^0.7.13",
     "@types/node": "^22.14.1",
-    "@types/react": "^19.0.10",
+    "@types/react": "^19.1.8",
     "@types/react-dom": "^19.0.4",
     "@types/stats.js": "^0.17.4",
     "@types/three": "^0.177.0",
