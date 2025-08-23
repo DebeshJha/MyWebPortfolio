@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   padding: 100px 0 50px;
-  background-color: whitesmoke;
+  background-color: white;
   cursor: url('../assets/cursor.png'), auto;
 }
 
@@ -130,7 +130,7 @@
   width: 350px;
   height: 350px;
   border-radius: 50%;
-  background: linear-gradient(45deg, #14aff7, #0da8f0);
+  background: linear-gradient(45deg, #82b4f2, #82b4f2);
   padding: 10px;
   box-shadow: 0 10px 30px rgba(108, 99, 255, 0.3);
   animation: float 6s ease-in-out infinite;

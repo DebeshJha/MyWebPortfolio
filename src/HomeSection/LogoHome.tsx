@@ -46,7 +46,7 @@ const LogoHome: React.FC = () => {
         </div>
         <div className="hero-image">
           <div className="image-wrapper">
-            <img src={logo} alt="Harshith Reddy" className="profile-img" />
+            <img src={logo} alt="Debesh jha" className="profile-img" />
           </div>
         </div>
       </div>

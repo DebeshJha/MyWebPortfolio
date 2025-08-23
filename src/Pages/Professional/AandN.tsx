@@ -37,7 +37,7 @@ const AndN:React.FC=()=>{
                         <h1 className="flex">Awards , Honors<span className="hidden lg:block">& Achievements</span></h1>
                       </div>
 
-                      <div className="w-full max-h-[75vh] bg-gray-200 overflow-y-auto text-black p-2 pr-4 gap-y-5 rounded-2xl shadow-md shadow-blue-300 hover:shadow-md hover:shadow-blue-500  backdrop:backdrop-blur-2xl">
+                      <div className="w-full max-h-[75vh] bg-gray-100 overflow-y-auto text-black p-2 pr-4 gap-y-5 rounded-2xl shadow-md shadow-blue-300 hover:shadow-md hover:shadow-blue-500  backdrop:backdrop-blur-2xl">
 
                         {Awards.map((award, index) => (
                           <div key={index}>
@@ -61,7 +61,7 @@ const AndN:React.FC=()=>{
                         <h1 className="flex">Conference Service{" "} <span className="hidden lg:block"> & Peer Reviews</span></h1>
                       </div>
 
-                      <div className=" flex flex-col w-full max-h-[75vh] bg-gray-200 overflow-y-auto text-black p-2 pr-4 gap-y-5 rounded-2xl shadow-md shadow-blue-300 hover:shadow-md hover:shadow-blue-500  backdrop:backdrop-blur-2xl">
+                      <div className=" flex flex-col w-full max-h-[75vh] bg-gray-100 overflow-y-auto text-black p-2 pr-4 gap-y-5 rounded-2xl shadow-md shadow-blue-300 hover:shadow-md hover:shadow-blue-500  backdrop:backdrop-blur-2xl">
 
                         <div className="group">
                             <h1 className="font-bold group-hover:text-blue-500 group-hover:underline group-hover:underline-offset-1 transition duration-300">2023</h1>

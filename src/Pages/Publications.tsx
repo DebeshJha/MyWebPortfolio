@@ -13,7 +13,7 @@ const DevelopPublicatons: React.FC = () => {
   }
   return (
     <section className="min-h-screen flex flex-col scrollbar-hide text-black p-3 pt-[70px]">
-      <h1 className="text-4xl text-center hover:text-blue-500 duration-300 p-3 mb-3 font-semibold cursor-pointer" onClick={HandleNavigate}>
+      <h1 className="text-4xl text-center hover:text-blue-700 duration-300 p-3 mb-3 font-semibold cursor-pointer" onClick={HandleNavigate}>
         Journal Articles & Conference Papers
       </h1>
 
@@ -23,7 +23,7 @@ const DevelopPublicatons: React.FC = () => {
           <h1 className="text-3xl ml-2 mb-2 font-medium cursor-pointer">Journals</h1>
 
           
-          <div className="w-full max-h-[75vh] bg-gray-200 overflow-y-auto text-black p-2 gap-y-5 rounded-2xl shadow-md shadow-gray-700 hover:shadow-lg hover:shadow-blue-200 scrollbar-hide custom-cursor backdrop:backdrop-blur-2xl">
+          <div className="w-full max-h-[75vh] bg-gray-100 backdrop:blur-lg overflow-y-auto text-black p-2 gap-y-5 rounded-2xl shadow-md shadow-gray-700 hover:shadow-lg hover:shadow-blue-200 scrollbar-hide custom-cursor backdrop:backdrop-blur-2xl">
             <div>
               <div className="group transition-transform duration-200 flex flex-row items-start gap-3 text-lg mt-1 max-w-4xl mx-auto" onClick={Validatingpolyp}>
                 <IoMdArrowDroprightCircle className="text-3xl transition-colors duration-200 group-hover:text-blue-900 cursor-pointer" />
@@ -177,7 +177,7 @@ const DevelopPublicatons: React.FC = () => {
           <h1 className="text-3xl ml-2 mb-2 font-medium cursor-pointer">Conferences</h1>
 
           
-          <div className="w-full max-h-[75vh] overflow-y-auto text-black p-2 space-y-2 rounded-2xl shadow-md shadow-gray-700 hover:shadow-lg hover:shadow-blue-200 scrollbar-hide custom-cursor bg-gray-200 backdrop:backdrop-blur-2xl">
+          <div className="w-full max-h-[75vh] overflow-y-auto text-black p-2 space-y-2 rounded-2xl shadow-md shadow-gray-700 hover:shadow-lg hover:shadow-blue-200 scrollbar-hide custom-cursor bg-gray-100 backdrop:backdrop-blur-2xl">
             <div>
               <div className="group transition-transform duration-200 flex flex-row items-start gap-3 text-lg mt-1 max-w-4xl mx-auto" onClick={DoubleUNet}>
                 <IoMdArrowDroprightCircle className="text-3xl transition-colors duration-200 group-hover:text-blue-900 cursor-pointer" />
