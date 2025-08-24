@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../Styles/WorkStyles.css";
 import { PiGithubLogoFill } from "react-icons/pi";
 import { RiFilePaper2Line } from "react-icons/ri";
@@ -21,6 +21,8 @@ import { ColonSegNetGithub, ColonSegNetpaper, DDANetGithub, DDANetpaper, DoubleU
 
 
 const Myworks: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   const myWorksData = [
 
@@ -132,50 +134,99 @@ const Myworks: React.FC = () => {
     },
   ];
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <section className="p-10 h-screen pt-[82px]">
+    <section 
+      ref={sectionRef}
+      className={`p-10 min-h-screen pt-[85px] transition-all duration-1000 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+      }`}
+    >
       <div className="flex flex-col h-full">
-        <h1 className="self-center font-bold text-4xl hover:text-blue-500 cursor-pointer duration-300">
-          My Works
-        </h1>
+        {/* Section Header with Animation */}
+        <div className={`text-center mb-8 transition-all duration-1000 delay-300 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          <h1 className="self-center font-bold text-4xl hover:text-blue-500 cursor-pointer duration-300 mb-4">
+            My Works
+          </h1>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-400 mx-auto rounded-full mb-4"></div>
+        </div>
         
         <div className="flex-1 overflow-auto mt-4 overflow-x-hidden">
           <div className="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-            {myWorksData.map((item, index) => (
-            <div
-              key={index}
-              className="aspect-[2/2] rounded-lg shadow-md p-4 sm:pt-4 sm:pb-0 flex flex-col hover:cursor-pointer duration-300 group relative overflow-hidden bg-gray-200">
-              <div className="h-[80%] perspective">
-                <div className="relative w-full h-full transition-transform duration-700 preserve-3d group-hover:rotate-y-180">
-                  <div className="absolute w-full h-full backface-hidden" onClick={item.github}>
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover rounded-lg overflow-hidden"/>
-                  </div>
-                  <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-blue-500/30 text-white p-4 rounded-lg flex flex-col items-center justify-center overflow-y-auto text-center text-sm">
-                    <p className="max-w-[90%] mx-auto text-justify leading-relaxed text-black">
-                      {item.description}
-                    </p>
-                    <div className="flex justify-between w-1/2 items-center text-2xl mt-3">
-                      <button className="mt-2 text-black font-semibold rounded-full cursor-pointer hover:scale-105 duration-300 px-2.5 py-2 bg-button hover:text-blue-400 hover:bg-black" onClick={item.github}>
-                        <PiGithubLogoFill />
-                      </button>
-                      <button className="mt-2 text-black font-semibold rounded-full cursor-pointer hover:scale-105 duration-300 px-2.5 py-2 bg-button hover:text-blue-400 hover:bg-black" onClick={item.paper}>
-                        <RiFilePaper2Line />
-                      </button>
+            {myWorksData.map((item, index) => {
+              
+              const slideDirection = index % 2 === 0 ? 'left' : 'right';
+              const slideClass = slideDirection === 'left' ? 'translate-x-[-100px]' : 'translate-x-[100px]';
+              
+              return (
+                <div
+                  key={index}
+                  className={`aspect-[2/2] rounded-lg shadow-md p-4 sm:pt-4 sm:pb-0 flex flex-col hover:cursor-pointer duration-300 group relative overflow-hidden bg-gray-200 transition-all transform ${
+                    isVisible 
+                      ? 'opacity-100 translate-x-0' 
+                      : `opacity-0 ${slideClass}`
+                  }`}
+                  style={{
+                    transitionDelay: `${(index + 1) * 150}ms`
+                  }}
+                >
+                  <div className="h-[80%] perspective">
+                    <div className="relative w-full h-full transition-transform duration-700 preserve-3d group-hover:rotate-y-180">
+                      <div className="absolute w-full h-full backface-hidden" onClick={item.github}>
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-full h-full object-cover rounded-lg overflow-hidden"/>
+                      </div>
+                      <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-blue-500/30 text-white p-4 rounded-lg flex flex-col items-center justify-center overflow-y-auto text-center text-sm">
+                        <p className="max-w-[90%] mx-auto text-justify leading-relaxed text-black">
+                          {item.description}
+                        </p>
+                        <div className="flex justify-between w-1/2 items-center text-2xl mt-3">
+                          <button className="mt-2 text-black font-semibold rounded-full cursor-pointer hover:scale-105 duration-300 px-2.5 py-2 bg-button hover:text-blue-400 hover:bg-black" onClick={item.github}>
+                            <PiGithubLogoFill />
+                          </button>
+                          <button className="mt-2 text-black font-semibold rounded-full cursor-pointer hover:scale-105 duration-300 px-2.5 py-2 bg-button hover:text-blue-400 hover:bg-black" onClick={item.paper}>
+                            <RiFilePaper2Line />
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                  <div className="h-[20%] flex flex-col items-center justify-center text-center" onClick={item.github}>
+                    <h2 className="text-lg font-bold group-hover:text-blue-500 duration-300 cursor-pointer">
+                      {item.title}
+                    </h2>
+                    <p className="text-md hidden md:block">{item.subtitle}</p>
+                  </div>
                 </div>
-              </div>
-              <div className="h-[20%] flex flex-col items-center justify-center text-center" onClick={item.github}>
-                <h2 className="text-lg font-bold group-hover:text-blue-500 duration-300 cursor-pointer">
-                  {item.title}
-                </h2>
-                <p className="text-md hidden md:block">{item.subtitle}</p>
-              </div>
-            </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
