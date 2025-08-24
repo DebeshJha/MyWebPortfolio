@@ -1,3 +1,4 @@
+import React, { useEffect, useRef, useState } from "react";
 import { IoLocation } from "react-icons/io5";
 import { RiSlideshow4Line } from "react-icons/ri";
 import sandford from "../assets/Talks/sanford.png";
@@ -11,6 +12,9 @@ import future from "../assets/Talks/Future.jpg"
 import First from "../assets/Talks/FirstTalk.png";
 
 const Talks:React.FC=()=>{
+    const [isVisible, setIsVisible] = useState(false);
+    const sectionRef = useRef<HTMLDivElement>(null);
+
     const talksData = [
         {
             title: "From Data to Diagnosis – Advancing Medical Imaging with Curated Dataset and AI Algorithms.",
@@ -28,7 +32,7 @@ const Talks:React.FC=()=>{
             title: "Revealing the Unseen: Deep Learning for Clinically Silent Patterns in Radiology",
             location: "MNIT Jaipur, 2025",
             image: MNIT1,
-            description:"I discussed how AI can uncover hidden anomalies in radiological images, particularly in liver tumors and complex abdominal cases. The session focused on deep learning’s ability to detect subtle, clinically silent patterns often missed by human observers, highlighting its transformative role in early diagnosis and decision-making. This work emphasizes AI’s growing potential in surfacing critical findings in medical imaging.",
+            description:"I discussed how AI can uncover hidden anomalies in radiological images, particularly in liver tumors and complex abdominal cases. The session focused on deep learning's ability to detect subtle, clinically silent patterns often missed by human observers, highlighting its transformative role in early diagnosis and decision-making. This work emphasizes AI's growing potential in surfacing critical findings in medical imaging.",
         },
         {
             title: "Reducing Miss Rates in GI Endoscopy: A Data-Centric AI Approach",
@@ -68,41 +72,91 @@ const Talks:React.FC=()=>{
         },
     ];
 
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                }
+            },
+            {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            }
+        );
 
-return (
-    <section className="p-5 h-screen pt-[85px] overflow-y-auto">
-      <h1 className="font-medium text-4xl text-center hover:text-blue-500 cursor-pointer duration-300">
-        Professional Talks
-      </h1>
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
 
-      <div className="mt-5 max-h-[800px] w-full flex flex-col cursor-pointer">
-        {talksData.map((talk, index) => (
-          <div key={index}>
-            <div className="flex flex-col-reverse md:flex-row items-center gap-4 px-2 hover:scale-101 duration-300 group">
-              <div className="flex-1 flex flex-col">
-                <div className="flex items-center font-medium group-hover:text-blue-700">
-                  <RiSlideshow4Line className="hidden xl:block mr-1 mt-1 w-5 h-5" />
-                  <h1 className="text-xl">{talk.title}</h1>
-                </div>
-                <div className="flex items-center text-md">
-                  <IoLocation className="mr-2 text-red-600" />
-                  <h1>{talk.location}</h1>
-                </div>
-                <p className="text-justify ml-1 flex-grow">{talk.description}</p>
-              </div>
-              <div className="flex items-center justify-center">
-                <img
-                  src={talk.image}
-                  alt={talk.title}
-                  className="w-full max-w-xs object-contain rounded-2xl cursor-pointer"
-                />
-              </div>
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
+
+    return (
+        <section 
+            ref={sectionRef}
+            className={`p-5 min-h-screen pt-[85px] overflow-y-auto transition-all duration-1000 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}
+        >
+            {/* Section Header with Animation */}
+            <div className={`text-center mb-8 transition-all duration-1000 delay-300 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
+                <h1 className="font-medium text-4xl text-center hover:text-blue-500 cursor-pointer duration-300 mb-4">
+                    Professional Talks
+                </h1>
             </div>
-            <hr className="w-[95%] border-t-1 border-blue-700 my-4 self-center" />
-          </div>
-        ))}
-      </div>
-    </section>
-  );
+
+            <div className="mt-5 max-h-[800px] w-full flex flex-col cursor-pointer">
+                {talksData.map((talk, index) => {
+                   
+                    const slideDirection = index % 2 === 0 ? 'right' : 'left';
+                    const slideClass = slideDirection === 'left' ? 'translate-x-[-100px]' : 'translate-x-[100px]';
+                    
+                    return (
+                        <div 
+                            key={index}
+                            className={`transition-all duration-700 transform ${
+                                isVisible 
+                                    ? 'opacity-100 translate-x-0' 
+                                    : `opacity-0 ${slideClass}`
+                            }`}
+                            style={{
+                                transitionDelay: `${(index + 1) * 200}ms`
+                            }}
+                        >
+                            <div className="flex flex-col-reverse md:flex-row items-center gap-4 px-2 hover:scale-101 duration-300 group">
+                                <div className="flex-1 flex flex-col">
+                                    <div className="flex items-center font-medium group-hover:text-blue-700">
+                                        <RiSlideshow4Line className="hidden xl:block mr-1 mt-1 w-5 h-5" />
+                                        <h1 className="text-xl">{talk.title}</h1>
+                                    </div>
+                                    <div className="flex items-center text-md">
+                                        <IoLocation className="mr-2 text-red-600" />
+                                        <h1>{talk.location}</h1>
+                                    </div>
+                                    <p className="text-justify ml-1 flex-grow">{talk.description}</p>
+                                </div>
+                                <div className="flex items-center justify-center">
+                                    <img
+                                        src={talk.image}
+                                        alt={talk.title}
+                                        className="w-full max-w-xs object-contain rounded-2xl cursor-pointer"
+                                    />
+                                </div>
+                            </div>
+                            <hr className="w-[95%] border-t-1 border-blue-700 my-4 self-center" />
+                        </div>
+                    );
+                })}
+            </div>
+        </section>
+    );
 };
+
 export default Talks;
