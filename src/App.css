@@ -6,7 +6,7 @@ html, body {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
-  background: whitesmoke;
+  background: white;
   background-size: 400% 400%;
   color: black;
 }

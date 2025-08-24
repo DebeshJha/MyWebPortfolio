@@ -12,14 +12,14 @@ const Navbar: React.FC = () => {
   }, [location.pathname]);
 
 const navLinkClasses = ({ isActive }: { isActive: boolean }) =>
-  `block px-2.5 py-2 rounded-sm font-medium transition-all duration-200 transform hover:scale-105 hover:bg-gray-100 hover:text-black hover:shadow-sm hover:shadow-blue-200 hover:underline decoration-blue-300 underline-offset-12 ${
+  `block px-2.5 py-2 rounded-sm font-medium transition-all duration-200 transform hover:scale-102 hover:bg-gray-100 hover:text-black hover:shadow-sm hover:shadow-blue-200 hover:underline decoration-blue-300 underline-offset-12 ${
     isActive ? "bg-white" : "text-black"
   }`;
 
   return (
     <div>
       
-      <header className="w-full p-5 fixed top-0 z-50 flex flex-row items-center justify-between bg-blue-400 backdrop-blur-sm shadow-sm">
+      <header className="w-full p-5 fixed top-0 z-50 flex flex-row items-center justify-between bg-blue-300 backdrop-blur-sm shadow-sm">
         
       <div className="group">
         <NavLink to="/" className="text-black text-4xl font-cursive hover:cursor-pointer transition-all duration-300 group-hover:font-bold italic cursive-vibes">

@@ -28,16 +28,16 @@ const AndN:React.FC=()=>{
   ]
     return(
         <section className="h-screen w-full p-5 pt-[90px] px-12">
-            <div className="flex flex-col xl:flex-row gap-2 mt-2 justify-between">
+            <div className="flex flex-col xl:flex-row gap-2 mt-2 justify-between h-full">
                     
-                    <div className="flex flex-col xl:w-6/13">
+                    <div className="flex flex-col xl:w-6/13 h-full">
             
                       <div className="flex flex-row items-center justify-center mt-4 mb-2 pl-3.5 text-2xl font-semibold cursor-pointer group">
                         <FaAward className="mr-1 mt-1 group-hover:text-blue-500"/>
                         <h1 className="flex">Awards , Honors<span className="hidden lg:block">& Achievements</span></h1>
                       </div>
 
-                      <div className="w-full max-h-[75vh] bg-gray-200 overflow-y-auto text-black p-2 pr-4 gap-y-5 rounded-2xl shadow-md shadow-blue-300 hover:shadow-md hover:shadow-blue-500  backdrop:backdrop-blur-2xl">
+                      <div className="w-full h-full bg-gray-100 overflow-y-auto text-black p-2 pr-4 gap-y-5 rounded-2xl shadow-md shadow-blue-300 hover:shadow-md hover:shadow-blue-500  backdrop:backdrop-blur-2xl">
 
                         {Awards.map((award, index) => (
                           <div key={index}>
@@ -54,14 +54,14 @@ const AndN:React.FC=()=>{
                     </div>
             
                     
-                    <div className="flex flex-col xl:w-6/13 cursor-default">
+                    <div className="flex flex-col xl:w-6/13 cursor-default h-full">
             
                       <div className="flex flex-row items-center justify-center mt-4 mb-2 pl-3.5 text-2xl font-semibold cursor-pointer group">
                         <MdRateReview className="mr-1 mt-1 group-hover:text-blue-500"/>
                         <h1 className="flex">Conference Service{" "} <span className="hidden lg:block"> & Peer Reviews</span></h1>
                       </div>
 
-                      <div className=" flex flex-col w-full max-h-[75vh] bg-gray-200 overflow-y-auto text-black p-2 pr-4 gap-y-5 rounded-2xl shadow-md shadow-blue-300 hover:shadow-md hover:shadow-blue-500  backdrop:backdrop-blur-2xl">
+                      <div className=" flex flex-col w-full h-full bg-gray-100 overflow-y-auto text-black p-2 pr-4 gap-y-5 rounded-2xl shadow-md shadow-blue-300 hover:shadow-md hover:shadow-blue-500  backdrop:backdrop-blur-2xl">
 
                         <div className="group">
                             <h1 className="font-bold group-hover:text-blue-500 group-hover:underline group-hover:underline-offset-1 transition duration-300">2023</h1>

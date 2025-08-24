@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../Styles/style.css";
 import CIRRMRI600 from "../assets/Dataset/CIRRMRI600.png"
 import PenSegData from "../assets/Dataset/PanSegData​.png"
@@ -19,6 +19,9 @@ import { CIRRMRI600Link, CLEFmedLink, EndoCVLink, EndoTact2021, GastroVisionLink
 
 
 const DataSet: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
   const datasets = [
     {
       title: "CIRRMRI600+",
@@ -112,50 +115,91 @@ const DataSet: React.FC = () => {
     },
   ];
 
-  return (
-    <section className="p-10 h-screen pt-[79px]">
-      <div className="flex flex-col h-full">
-        <h1 className="self-center font-bold text-4xl hover:text-blue-500 cursor-pointer duration-300">
-          Our DataSets
-        </h1>
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      }
+    );
 
-        {/* This is the scrollable area */}
-        <div className="flex-1 overflow-auto mt-4 overflow-x-hidden">
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <section 
+      ref={sectionRef}
+      className={`p-10 min-h-screen pt-[100px] transition-all duration-1000 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+      }`}
+    >
+      <div className="flex flex-col h-full">
+        
+        <div className={`text-center mb-8 transition-all duration-1000 delay-300 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
+          <h1 className="self-center font-bold text-4xl hover:text-blue-500 cursor-pointer duration-300 mb-4">
+            Our DataSets
+          </h1>
+        </div>
+
+        
+        <div className="flex-1 overflow-auto overflow-x-hidden">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {datasets.map((dataset, index) => (
               <div
                 key={index}
-                className="aspect-[2/2] rounded-lg shadow-md p-4 flex flex-col hover:cursor-pointer hover:scale-105 duration-300 group relative overflow-hidden"
+                className={`aspect-[2/2] rounded-lg shadow-md p-4 flex flex-col hover:cursor-pointer hover:scale-105 duration-300 group relative overflow-hidden transition-all transform ${
+                  isVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-10'
+                }`}
+                style={{
+                  transitionDelay: `${(index + 1) * 100}ms`
+                }}
                 onClick={dataset.link}
               >
-              <div className="h-[80%] overflow-hidden rounded-lg mb-2 relative">
-                <img
-                  src={dataset.image}
-                  alt={dataset.title}
-                  className="w-full h-full object-cover rounded-lg transition duration-300"
-                />
-              <div className="absolute inset-0 flex flex-col items-center justify-center backdrop-blur-sm bg-blue-400/30 text-white text-sm p-4 opacity-0 group-hover:opacity-100 transition duration-300 rounded-lg overflow-y-auto text-center">
-                <p className="max-w-[90%] mx-auto text-justify leading-relaxed">
-                  {dataset.description}
-                </p>
-                <button
-                  className="mt-2 bg-button text-white font-semibold rounded-2xl cursor-pointer hover:scale-105 duration-300 px-2.5 py-2"
-                  onClick={dataset.link}>
-                  Get this DataSet
-                </button>
-        </div>
-      </div>
-      <div className="h-[20%] flex items-center justify-center text-center">
-        <h2
-          className="text-lg font-bold group-hover:text-blue-500 duration-300 cursor-pointer"
-          onClick={dataset.link}
-        >
-          {dataset.title}
-        </h2>
-      </div>
-    </div>
-  ))}
-</div>
+                <div className="h-[80%] overflow-hidden rounded-lg mb-2 relative">
+                  <img
+                    src={dataset.image}
+                    alt={dataset.title}
+                    className="w-full h-full object-cover rounded-lg transition duration-300"
+                  />
+                  <div className="absolute inset-0 flex flex-col items-center justify-center backdrop-blur-sm bg-blue-400/30 text-white text-sm p-4 opacity-0 group-hover:opacity-100 transition duration-300 rounded-lg overflow-y-auto text-center">
+                    <p className="max-w-[90%] mx-auto text-justify leading-relaxed">
+                      {dataset.description}
+                    </p>
+                    <button
+                      className="mt-2 bg-button text-white font-semibold rounded-2xl cursor-pointer hover:scale-105 duration-300 px-2.5 py-2"
+                      onClick={dataset.link}>
+                      Get this DataSet
+                    </button>
+                  </div>
+                </div>
+                <div className="h-[20%] flex items-center justify-center text-center">
+                  <h2
+                    className="text-lg font-bold group-hover:text-blue-500 duration-300 cursor-pointer"
+                    onClick={dataset.link}
+                  >
+                    {dataset.title}
+                  </h2>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
