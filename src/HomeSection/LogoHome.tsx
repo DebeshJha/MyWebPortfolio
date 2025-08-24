@@ -5,6 +5,7 @@ import logo from "../assets/Home0.png";
 import {Github,Clarivate,Orcid,Dblb,ResearchGate,Semanticscholar,GoogleScholr} from "../Services/Calls";
 import { FaGithub} from 'react-icons/fa';
 import { FaGoogleScholar } from 'react-icons/fa6';
+import { FaChevronDown } from 'react-icons/fa';
 import {
   SiResearchgate,
   SiSemanticscholar,
@@ -12,45 +13,64 @@ import {
   SiOrcid,
   SiClarivate,
 } from 'react-icons/si';
-
+import RecentNews from './RecentNews';
 
 const LogoHome: React.FC = () => {
 
-  return (
-    <section id="home" className="hero">
-      <div className="container">
-        <div className="hero-content">
-          <h1 className="hero-title group-hover-wrapper">
-            Hello, I'm <br />
-            <span className="name-hover-group">
-               Debesh Jha <span className="wave-on-hover">👋</span>
-            </span>
-          </h1>
-          <h2 className="hero-subtitle">Visiting Professor, AI Researcher & Medical Imaging Scientist</h2>
-          <div className="responsive-padding">
-            <p className="hero-description">
-             I'm a top-ranked AI researcher developing advanced models and datasets like Colon-SegNet and Kvasir-SEG to enhance medical imaging, 
-             diagnostics, and real-world healthcare. Recognized among the world’s top 2% scientists and a 2024 Top Scholar by ScholarGPS, my work 
-             supports radiologists through intelligent, ethical technologies.</p>
-          </div>
-          <div className="social-icons">
-            <IconBox Icon={FaGoogleScholar} onClick={GoogleScholr} />
-            <IconBox Icon={FaGithub} onClick={Github} />
-            <IconBox Icon={SiClarivate} onClick={Clarivate} />
-            <IconBox Icon={SiOrcid} onClick={Orcid} />
-            <IconBox Icon={SiDblp} onClick={Dblb} />
-            <IconBox Icon={SiResearchgate} onClick={ResearchGate} />
-            <IconBox Icon={SiSemanticscholar} onClick={Semanticscholar} />
-          </div>
+  const scrollToNews = () => {
+    const newsSection = document.querySelector('[data-section="recent-news"]');
+    if (newsSection) {
+      newsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
-        </div>
-        <div className="hero-image">
-          <div className="image-wrapper">
-            <img src={logo} alt="Debesh jha" className="profile-img" />
+  return (
+    <>
+      <section id="home" className="hero">
+        <div className="container">
+          <div className="hero-content">
+            <h1 className="hero-title group-hover-wrapper">
+              Hello, I'm <br />
+              <span className="name-hover-group">
+                 Debesh Jha <span className="wave-on-hover">👋</span>
+              </span>
+            </h1>
+            <h2 className="hero-subtitle">Visiting Professor, AI Researcher & Medical Imaging Scientist</h2>
+            <div className="responsive-padding">
+              <p className="hero-description">
+               I'm a top-ranked AI researcher developing advanced models and datasets like Colon-SegNet and Kvasir-SEG to enhance medical imaging, 
+               diagnostics, and real-world healthcare. Recognized among the world's top 2% scientists and a 2024 Top Scholar by ScholarGPS, my work 
+               supports radiologists through intelligent, ethical technologies.</p>
+            </div>
+            <div className="social-icons">
+              <IconBox Icon={FaGoogleScholar} onClick={GoogleScholr} />
+              <IconBox Icon={FaGithub} onClick={Github} />
+              <IconBox Icon={SiClarivate} onClick={Clarivate} />
+              <IconBox Icon={SiOrcid} onClick={Orcid} />
+              <IconBox Icon={SiDblp} onClick={Dblb} />
+              <IconBox Icon={SiResearchgate} onClick={ResearchGate} />
+              <IconBox Icon={SiSemanticscholar} onClick={Semanticscholar} />
+            </div>
+
+          </div>
+          <div className="hero-image">
+            <div className="image-wrapper">
+              <img src={logo} alt="Debesh jha" className="profile-img" />
+            </div>
           </div>
         </div>
+        
+        
+        <div className="scroll-indicator" onClick={scrollToNews}>
+          <FaChevronDown className="scroll-arrow animate-bounce" />
+        </div>
+      </section>
+      
+      
+      <div data-section="recent-news">
+        <RecentNews />
       </div>
-    </section>
+    </>
   );
 };
 
