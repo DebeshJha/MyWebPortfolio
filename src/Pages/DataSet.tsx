@@ -158,11 +158,11 @@ const DataSet: React.FC = () => {
 
         
         <div className="flex-1 overflow-auto overflow-x-hidden">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {datasets.map((dataset, index) => (
               <div
                 key={index}
-                className={`aspect-[2/2] rounded-lg shadow-md p-4 flex flex-col hover:cursor-pointer hover:scale-105 duration-300 group relative overflow-hidden transition-all transform ${
+                className={`aspect-[2/2] rounded-lg shadow-md p-4 flex flex-col hover:cursor-pointer duration-300 group relative overflow-hidden transition-all transform ${
                   isVisible 
                     ? 'opacity-100 translate-y-0' 
                     : 'opacity-0 translate-y-10'
@@ -172,7 +172,7 @@ const DataSet: React.FC = () => {
                 }}
                 onClick={dataset.link}
               >
-                <div className="h-[80%] overflow-hidden rounded-lg mb-2 relative">
+                <div className="h-[75%] lg:h-[70%] xl:h-[65%] overflow-hidden rounded-lg mb-2 relative">
                   <img
                     src={dataset.image}
                     alt={dataset.title}
@@ -183,13 +183,13 @@ const DataSet: React.FC = () => {
                       {dataset.description}
                     </p>
                     <button
-                      className="mt-2 bg-button text-white font-semibold rounded-2xl cursor-pointer hover:scale-105 duration-300 px-2.5 py-2"
+                      className="mt-2 bg-button text-white font-semibold rounded-2xl cursor-pointer duration-300 px-2.5 py-2"
                       onClick={dataset.link}>
                       Get this DataSet
                     </button>
                   </div>
                 </div>
-                <div className="h-[20%] flex items-center justify-center text-center">
+                <div className="h-[25%] lg:h-[30%] xl:h-[35%] flex items-center justify-center text-center">
                   <h2
                     className="text-lg font-bold group-hover:text-blue-500 duration-300 cursor-pointer"
                     onClick={dataset.link}
