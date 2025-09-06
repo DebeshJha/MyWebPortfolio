@@ -177,7 +177,7 @@ const Myworks: React.FC = () => {
         </div>
         
         <div className="flex-1 overflow-auto mt-4 overflow-x-hidden">
-          <div className="grid sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {myWorksData.map((item, index) => {
               
               const slideDirection = index % 2 === 0 ? 'left' : 'right';
@@ -195,7 +195,7 @@ const Myworks: React.FC = () => {
                     transitionDelay: `${(index + 1) * 150}ms`
                   }}
                 >
-                  <div className="h-[80%] perspective">
+                  <div className="h-[75%] lg:h-[70%] xl:h-[65%] perspective">
                     <div className="relative w-full h-full transition-transform duration-700 preserve-3d group-hover:rotate-y-180">
                       <div className="absolute w-full h-full backface-hidden" onClick={item.github}>
                         <img
@@ -203,7 +203,7 @@ const Myworks: React.FC = () => {
                           alt={item.title}
                           className="w-full h-full object-cover rounded-lg overflow-hidden"/>
                       </div>
-                      <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-blue-500/30 text-white p-4 rounded-lg flex flex-col items-center justify-center overflow-y-auto text-center text-sm">
+                      <div className="absolute w-full h-full backface-hidden rotate-y-180 bg-blue-500/30 text-white p-4 rounded-lg flex flex-col items-center justify-center overflow-y-auto text-center text-xs">
                         <p className="max-w-[90%] mx-auto text-justify leading-relaxed text-black">
                           {item.description}
                         </p>
@@ -218,7 +218,7 @@ const Myworks: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="h-[20%] flex flex-col items-center justify-center text-center" onClick={item.github}>
+                  <div className="h-[25%] lg:h-[30%] xl:h-[35%] flex flex-col items-center justify-center text-center" onClick={item.github}>
                     <h2 className="text-lg font-bold group-hover:text-blue-500 duration-300 cursor-pointer">
                       {item.title}
                     </h2>
