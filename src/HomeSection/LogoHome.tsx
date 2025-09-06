@@ -35,7 +35,7 @@ const LogoHome: React.FC = () => {
                  Debesh Jha <span className="wave-on-hover">👋</span>
               </span>
             </h1>
-            <h2 className="hero-subtitle">Visiting Professor, AI Researcher & Medical Imaging Scientist</h2>
+            <h2 className="hero-subtitle">Assistant Professor (Tenure Track), AI Researcher & Medical Imaging Scientist</h2>
             <div className="responsive-padding">
               <p className="hero-description">
                I'm a top-ranked AI researcher developing advanced models and datasets like Colon-SegNet and Kvasir-SEG to enhance medical imaging, 
@@ -55,7 +55,7 @@ const LogoHome: React.FC = () => {
           </div>
           <div className="hero-image">
             <div className="image-wrapper">
-              <img src={logo} alt="Debesh jha" className="profile-img" />
+              <img src={logo} alt="Portrait of Debesh Jha" className="profile-img" />
             </div>
           </div>
         </div>
